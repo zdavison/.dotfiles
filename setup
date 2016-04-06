@@ -1,0 +1,55 @@
+#### INTRO
+# setup temp directories
+mkdir manual
+mkdir temp
+
+#### REQUIRED
+echo "installing homebrew..."
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+#### FISH
+echo "installing fish..."
+brew install fish
+
+echo "installing oh-my-fish..."
+curl -L https://github.com/oh-my-fish/oh-my-fish/raw/master/tools/install.fish | fish
+
+echo "copying fish.config..."
+cp config.fish ~/.config/fish/config.fish
+
+echo "fetching fish plugins / config..."
+omf install
+ 
+echo "cloning solarized into 'manual/solarized'..."
+#	(installed manually later)
+git clone git://github.com/altercation/solarized.git manual/solarized
+
+echo "installing powerline-patched version of Menlo..."
+# 	(for agnoster theme arrows)
+git clone https://github.com/powerline/fonts.git temp/powerline-fonts
+cp temp/powerline-fonts/Meslo/Meslo\ LG\ M\ Regular\ for\ Powerline.otf ~/Library/Fonts
+
+### RUBY
+echo "install rbenv..."
+brew install rbenv
+
+echo "installing ruby-build..."
+#	(for rbenv versions)
+brew install ruby-build
+
+echo "installing ruby 2.2.2..."
+rbenv install 2.2.2
+rbenv global 2.2.2
+rbenv rehash
+
+#### TEARDOWN
+# remove temp directory
+rm -rf temp
+
+#### Apps
+echo "installing iTerm2..."
+brew cask install iterm2
+
+echo " MANUAL STEPS REQUIRED BY YOU NOW: "
+echo " + install solarized for iTerm2 (manual/solarized)"
+echo " + set default shell in iTerm2 to /usr/local/bin/fish"
