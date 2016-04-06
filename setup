@@ -12,13 +12,10 @@ echo "installing fish..."
 brew install fish
 
 echo "installing oh-my-fish..."
-curl -L https://github.com/oh-my-fish/oh-my-fish/raw/master/tools/install.fish | fish
+curl -L https://github.com/oh-my-fish/oh-my-fish/raw/master/bin/install | fish
 
-echo "copying fish.config..."
-cp config.fish ~/.config/fish/config.fish
-
-echo "fetching fish plugins / config..."
-omf install
+echo "Installing 'agnoster' theme..."
+omf install agnoster
  
 echo "cloning solarized into 'manual/solarized'..."
 #	(installed manually later)
